@@ -5,7 +5,7 @@
  * Functions to handle the direct to database source.
  */
 
-backup_migrate_include('sources.db');
+require_once dirname(__FILE__) . '/sources.db.inc';
 
 /**
  * A source type for backing up from database server.

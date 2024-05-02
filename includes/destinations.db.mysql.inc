@@ -5,7 +5,7 @@
  * Functions to handle the direct to database destination.
  */
 
-backup_migrate_include('destinations.db');
+require_once dirname(__FILE__) . '/destinations.db.inc';
 
 /**
  * A destination type for saving to a database server.

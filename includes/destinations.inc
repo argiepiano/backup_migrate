@@ -6,7 +6,8 @@
  * All of the destination handling code needed for Backup and Migrate.
  */
 
-backup_migrate_include('crud', 'locations');
+require_once dirname(__FILE__) . '/crud.inc';
+require_once dirname(__FILE__) . '/locations.inc';
 
 /**
  * Get the available destination types.
@@ -106,7 +107,7 @@ function backup_migrate_backup_migrate_destinations() {
   }
   $out['upload']    = backup_migrate_create_destination('browser_upload');
   // Expose the configured databases as sources.
-  backup_migrate_include('filters');
+  require_once dirname(__FILE__) . '/filters.inc';
   $out              += backup_migrate_filters_invoke_all('destinations');
 
   return $out;
@@ -521,7 +522,7 @@ function _backup_migrate_ui_destination_display_file_list_options($files, $limit
  */
 function backup_migrate_ui_destination_download_file($destination_id = NULL, $file_id = NULL) {
   if ($file = backup_migrate_destination_get_file($destination_id, $file_id)) {
-    backup_migrate_include('files');
+    require_once dirname(__FILE__) . '/files.inc';
     $file->transfer();
   }
   backdrop_goto(BACKUP_MIGRATE_MENU_PATH);
@@ -931,7 +932,7 @@ class backup_migrate_destination extends backup_migrate_location {
    * Retrieve the file list.
    */
   function file_cache_get() {
-    backup_migrate_include('files');
+    require_once dirname(__FILE__) . '/files.inc';
     $cache = cache_get('backup_migrate_file_list:'. $this->get_id());
     if (!empty($cache->data) && $cache->created > (time() - $this->cache_expire)) {
       $this->fetch_time = $cache->created;
