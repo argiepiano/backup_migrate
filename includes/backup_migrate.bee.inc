@@ -98,7 +98,9 @@ function backup_migrate_bee_command() {
  * @return void
  */
 function backup_migrate_backup_bee_callback($arguments, $options) {
-  backup_migrate_include('profiles', 'destinations', 'sources');
+  require_once dirname(__FILE__) . '/profiles.inc';
+  require_once dirname(__FILE__) . '/destinations.inc';
+  require_once dirname(__FILE__) . '/sources.inc';
 
   $source_id = 'db';
   $destination_id = 'manual';
@@ -146,7 +148,7 @@ function backup_migrate_backup_bee_callback($arguments, $options) {
  * Get a list of available destinations.
  */
 function backup_migrate_list_destinations_bee_callback() {
-  backup_migrate_include('destinations');
+  require_once dirname(__FILE__) . '/destinations.inc';
 
   $op = 'all';
   $rows = array();
@@ -194,7 +196,7 @@ function backup_migrate_list_destinations_bee_callback() {
  * @return void
  */
 function backup_migrate_list_saved_bee_callback($arguments, $options) {
-  backup_migrate_include('destinations');
+  require_once dirname(__FILE__) . '/destinations.inc';
 
   $destination = NULL;
 
@@ -268,7 +270,7 @@ function backup_migrate_list_saved_bee_callback($arguments, $options) {
  * Get a list of available profiles.
  */
 function backup_migrate_list_settings_profiles_bee_callback() {
-  backup_migrate_include('profiles');
+  require_once dirname(__FILE__) . '/profiles.inc';
 
   $rows = array();
 
@@ -301,7 +303,7 @@ function backup_migrate_list_settings_profiles_bee_callback() {
  * Get a list of available sources.
  */
 function backup_migrate_list_sources_bee_callback() {
-  backup_migrate_include('sources');
+  require_once dirname(__FILE__) . '/sources.inc';
 
   $op = 'source';
   $rows = array();
@@ -342,7 +344,9 @@ function backup_migrate_list_sources_bee_callback() {
  * @return void
  */
 function backup_migrate_restore_bee_callback($arguments, $options) {
-  backup_migrate_include('profiles', 'destinations', 'sources');
+  require_once dirname(__FILE__) . '/profiles.inc';
+  require_once dirname(__FILE__) . '/destinations.inc';
+  require_once dirname(__FILE__) . '/sources.inc';
 
   $source_id = $arguments['source'];
   $destination_id = $arguments['destination'];

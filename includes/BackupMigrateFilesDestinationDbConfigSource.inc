@@ -146,7 +146,10 @@ class BackupMigrateFilesDestinationDbConfigSource extends backup_migrate_destina
    * Get a database dump to add to the archive.
    */
   function get_db() {
-    backup_migrate_include('destinations', 'files', 'filters', 'profiles');
+    require_once dirname(__FILE__) . '/destinations.inc';
+    require_once dirname(__FILE__) . '/files.inc';
+    require_once dirname(__FILE__) . '/filters.inc';
+    require_once dirname(__FILE__) . '/profiles.inc';
 
     $file = new backup_file();
     // Clone the default settings so we can make changes without them leaking out of this function.

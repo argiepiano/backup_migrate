@@ -116,7 +116,7 @@ function backup_migrate_temp_directory() {
  * Return a list of backup filetypes.
  */
 function _backup_migrate_filetypes() {
-  backup_migrate_include('filters');
+  require_once dirname(__FILE__) . '/filters.inc';
 
   $out = backup_migrate_filters_file_types();
 
