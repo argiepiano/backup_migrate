@@ -4,6 +4,8 @@
  * A destination type for saving locally to the server.
  */
 
+require_once dirname(__FILE__) . '/sources.filesource.inc';
+
 /**
  * A destination type for saving db and active config folder locally to the server.
  *
